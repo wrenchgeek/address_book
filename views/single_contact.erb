@@ -14,7 +14,7 @@
 <h4><%= email.email() %></h4>
 <% end %>
 
-<form action="/add_phone" method="post">
+<form action="/add_phone/<%= @contact.c_id() %>" method="post">
 
     <label for="area">Area Code:</label>
     <input id="area" name="area" type="text">
@@ -27,7 +27,7 @@
     <button type="submit">Add Phone</button>
 </form>
 
-<form action="/add_address" method="post">
+<form action="/add_address/<%= @contact.c_id() %>" method="post">
 
     <label for="street_address">Street:</label>
     <input id="street_address" name="street_address" type="text">
@@ -45,7 +45,7 @@
 </form>
 
 
-<form action="/add_email" method="post">
+<form action="/add_email/<%= @contact.c_id() %>" method="post">
 
     <label for="email">email:</label>
     <input id="email" name="email" type="text">

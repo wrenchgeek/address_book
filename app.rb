@@ -25,8 +25,18 @@ post('/delete_contacts') do
   erb(:index)
 end
 
-get('/single_contact/:c_id') do
-  @contact = Contact.find(params.fetch('c_id').to_i())
+get('/single_contact/:id') do
+  @contact = Contact.find(params.fetch('id').to_i())
+  erb(:single_contact)
+end
+
+post('add_phone/:id') do
+  area = params.fetch('area')
+  number = params.fetch('number')
+  type = params.fetch('type')
+  phone = Phone.new({area => 'area', number => 'number', type => 'type'})
+  @contact = Contact.find(params.fetch('id').to_i())
+  @contact.add_phone(phone)
   erb(:single_contact)
 end
 #
