@@ -5,7 +5,7 @@ require('./lib/email')
 
 
 get('/') do
-  $id = 0
+  # $id = 0
   erb(:index)
 end
 
@@ -26,9 +26,9 @@ post('/all_emails') do
 end
 
 post('/delete_email') do
-  # email = params.fetch('email')
+  email_num = params.fetch('email_id')
 
-  Email.delete(Email.find($id))
+  Email.delete(Email.find(email_num))
   @all_emails = Email.all()
   erb(:all_emails)
 end

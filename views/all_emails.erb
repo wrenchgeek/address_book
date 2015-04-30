@@ -12,7 +12,8 @@
 
   <li><%= email.e_address() %></li>
   <form action="/delete_email" method="post">
-    <button  id ="<% $id = email.e_id() %>" type="submit">Delete</button>
+      <input id='email_id' name='email_id' type='hidden' value='<%= email.e_id() %>'>
+    <button type="submit">Delete</button>
   </form>
   <% end %>
 </ul>
