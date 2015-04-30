@@ -21,4 +21,13 @@ describe(Email) do
       expect(Email.all()).to(eq([test_email]))
     end
   end
+
+  describe('.clear') do
+    it("clears the @@emails array") do
+      test_email = Email.new("joe@joe.com")
+      test_email.save()
+      Email.clear()
+      expect(Email.all()).to(eq([]))
+    end
+  end
 end
