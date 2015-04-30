@@ -1,2 +1,33 @@
-<a href="/all_emails">See Email List</a>
-<!-- <a href="/all_emails/new">Add New Email</a> -->
+<h1>Contacts</h1>
+
+<h3>Enter a new contact:</h3>
+<form action="/all_contacts" method="post">
+  <label for="first_name">First:</label>
+  <input id="first_name" name="first_name" type="text">
+
+  <label for="last_name">Last:</label>
+  <input id="last_name" name="last_name" type="text">
+  <button type="submit">Add Contact</button>
+</form>
+
+<h3>Here are the contacts:</h3>
+<ul>
+  <% @all_contacts.each() do |contact| %>
+
+  <li><a href="/single_contact/<%= contact.c_id() %>"> <%= contact.first() %>  <%= contact.last() %></a></li>
+  <form action="/delete_contacts" method="post">
+      <input id='contact_id' name='contact_id' type='hidden' value='<%= contact.c_id() %>'>
+    <button type="submit">Delete</button>
+  </form>
+  <% end %>
+</ul>
+
+
+
+  <!--
+  <label for="contact">Contact:</label>
+  <input id="contact" name="contact" type="text">
+  <button type="submit">Add Contact</button>
+</form>
+
+ -->

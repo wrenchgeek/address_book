@@ -1,0 +1,53 @@
+<h1><%= @contact.first() %> <%= @contact.last() %></h1>
+
+<% @contact.phones().each() do |phone| %>
+<h4> (<%= phone.area() %>) <%= phone.number() %> <%= phone.type() %></h4>
+<% end %>
+
+<% @contact.addresses().each() do |address| %>
+<h4><%= address.street_address() %></h4>
+<h4><%= address.city() %>, <%= address.state() %></h4>
+<h4><%= address.zip() %></h4>
+<% end %>
+
+<% @contact.emails().each() do |email| %>
+<h4><%= email.email() %></h4>
+<% end %>
+
+<form action="/add_phone" method="post">
+
+    <label for="area">Area Code:</label>
+    <input id="area" name="area" type="text">
+
+    <label for="number">Phone Number:</label>
+    <input id="number" name="Number" type="text">
+
+    <label for="type">Home/ Work/ Cell:</label>
+    <input id="type" name="type" type="text">
+    <button type="submit">Add Phone</button>
+</form>
+
+<form action="/add_address" method="post">
+
+    <label for="street_address">Street:</label>
+    <input id="street_address" name="street_address" type="text">
+
+    <label for="city">City:</label>
+    <input id="city" name="city" type="text">
+
+    <label for="state">State:</label>
+    <input id="state" name="state" type="text">
+
+
+    <label for="zip">Zip Code:</label>
+    <input id="zip" name="zip" type="text">
+    <button type="submit">Add Address</button>
+</form>
+
+
+<form action="/add_email" method="post">
+
+    <label for="email">email:</label>
+    <input id="email" name="email" type="text">
+    <button type="submit">Add Contact</button>
+</form>

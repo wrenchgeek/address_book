@@ -1,36 +1,33 @@
 require('sinatra')
 require('sinatra/reloader')
 also_reload('lib/**/*.rb')
-require('./lib/email')
+require('./lib/contact')
 
 
 get('/') do
-  # $id = 0
+@all_contacts = Contact.all()
   erb(:index)
 end
 
-get('/all_emails') do
-  @all_emails = Email.all()
-  erb(:all_emails)
+post('/all_contacts') do
+  first = params.fetch('first_name')
+  last = params.fetch('last_name')
+  Contact.new({:first => first,:last => last}).save()
+  @all_contacts = Contact.all()
+  erb(:index)
 end
 
-# get('/all_emails/new') do
-#   erb(:email_form)
-# end
+post('/delete_contacts') do
+  contact_num = params.fetch('contact_id')
 
-post('/all_emails') do
-  email = params.fetch('email')
-  Email.new(email).save()
-  @all_emails = Email.all()
-  erb(:all_emails)
+  Contact.delete(Contact.find(contact_num))
+  @all_contacts = Contact.all()
+  erb(:index)
 end
 
-post('/delete_email') do
-  email_num = params.fetch('email_id')
-
-  Email.delete(Email.find(email_num))
-  @all_emails = Email.all()
-  erb(:all_emails)
+get('/single_contact/:c_id') do
+  @contact = Contact.find(params.fetch('c_id').to_i())
+  erb(:single_contact)
 end
 #
 # get('/all_emails/delete') do
